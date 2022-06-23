@@ -108,20 +108,23 @@ class ArConverter:
                 'Other ,', '').replace(',', ', ').replace(' ,', ', ').split()))
 
     def convert_AR(self):
-        self._open_excel_file()
-        self._set_columns_language()
-        self._keep_only_columns_from_list()
-        self._remove_holiday()
-        self._remove_other()
-        self._sort_by_date_and_descriptions()
-        self._concatenate_descriptions()
-        self._set_reporting_time()
-        self._drop_duplicates_sort_and_fix_index()
-        self._shorten_date()
-        self._modify_descriptions()
-        self._rename_columns()
-        self._add_sum_of_times()
-        self._save_excel_file()
+        try:
+            self._open_excel_file()
+            self._set_columns_language()
+            self._keep_only_columns_from_list()
+            self._remove_holiday()
+            self._remove_other()
+            self._sort_by_date_and_descriptions()
+            self._concatenate_descriptions()
+            self._set_reporting_time()
+            self._drop_duplicates_sort_and_fix_index()
+            self._shorten_date()
+            self._modify_descriptions()
+            self._rename_columns()
+            self._add_sum_of_times()
+            self._save_excel_file()
+        except OSError as os_error:
+            print("OS Error occurred: {}".format(os_error))
 
 
 def convert(input_file_path, output_file_path):
