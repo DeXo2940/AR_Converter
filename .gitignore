@@ -131,3 +131,6 @@ dmypy.json
 # Input/Output
 /input
 /output
+
+# Workspace
+workspace.xml
