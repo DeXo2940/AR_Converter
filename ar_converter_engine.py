@@ -1,3 +1,4 @@
+from typing import Type
 from warnings import catch_warnings, simplefilter
 # noinspection PyUnresolvedReferences
 from openpyxl import Workbook
@@ -8,7 +9,7 @@ import columns_languages_enum as columns
 
 class ArConverter:
     DASH_COLUMN = 'DashCount'
-    _columns = object
+    _columns: Type[columns.AbstractColumns] = object
     _column_list = []
     _excel_data = object
     _input_file_path = ''
