@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     output_file_path = output_file_name if '.xlsx' in output_file_name else output_file_name + '.xlsx'
 
-    print('Input: ', input_file_path)
-    print('Output: ', output_file_path)
+    print('Input: {}'.format(input_file_path))
+    print('Output: {}'.format(output_file_path))
 
     main(input_file_path, output_file_path)
