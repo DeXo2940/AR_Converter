@@ -136,3 +136,6 @@ dmypy.json
 
 # Workspace
 workspace.xml
+
+# Virtual env
+/virtual

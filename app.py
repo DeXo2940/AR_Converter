@@ -3,8 +3,6 @@ from werkzeug.utils import secure_filename
 from os import path, makedirs, walk, remove
 from uuid import uuid4
 
-import datetime
-
 from ar_converter_engine import convert
 
 SESSION_FILENAME_VARIABLE = 'session_filename'
