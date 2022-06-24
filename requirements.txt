@@ -1,0 +1,6 @@
+Flask
+werkzeug
+uuid
+typing
+openpyxl
+pandas
