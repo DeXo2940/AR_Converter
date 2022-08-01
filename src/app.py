@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, send_file, session
 from werkzeug.utils import secure_filename
-from os import path, makedirs, walk, remove
+from os import path, makedirs, walk, remove, getcwd
 from uuid import uuid4
 
 from ar_converter_engine import convert
@@ -26,8 +26,6 @@ def remove_all_files():
 def check_file_extension(filename):
     return filename.split('.')[-1] in ALLOWED_EXTENSIONS
 
-
-# TODO: Remove files on schedule
 
 # Create necessary destinations if they don't exist
 for destination_path in NECESSARY_PATHS:
@@ -69,7 +67,7 @@ def download_file():
     output_file_path = PROCESSED_PATH + output_file_name
     if not output_file_name or not path.exists(output_file_path):
         return 'No file found'
-    return send_file(output_file_path, as_attachment=True)
+    return send_file( path.join(getcwd(), output_file_path ), as_attachment=True)
 
 
 @app.route('/remove')
