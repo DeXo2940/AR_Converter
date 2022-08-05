@@ -1,7 +1,7 @@
-from enum import Enum
+import enum
 
 
-class AbstractColumns(Enum):
+class AbstractColumns(enum.Enum):
     pass
 
 
