@@ -129,10 +129,10 @@ dmypy.json
 .pyre/
 
 # Input/Output
-/input
-/output
-/uploads
-/processed
+/src/input
+/src/output
+/src/uploads
+/src/processed
 
 # Workspace
 workspace.xml

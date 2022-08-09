@@ -1,15 +1,15 @@
-from typing import Type
-from warnings import catch_warnings, simplefilter
+import typing
+import warnings
+import pandas
 # noinspection PyUnresolvedReferences
-from openpyxl import Workbook
-from pandas import read_excel, ExcelWriter, to_datetime, concat, DataFrame
+import openpyxl
 
 import columns_languages_enum as columns
 
 
 class ArConverter:
     DASH_COLUMN = 'DashCount'
-    _columns: Type[columns.AbstractColumns] = object
+    _columns: typing.Type[columns.AbstractColumns] = object
     _column_list = []
     _excel_data = object
     _input_file_path = ''
@@ -24,9 +24,10 @@ class ArConverter:
         return ArConverter(input_file_path, output_file_path)
 
     def _open_excel_file(self):
-        with catch_warnings(record=True):
-            simplefilter("always")
-            self._excel_data = read_excel(self._input_file_path, engine="openpyxl")
+        with warnings.catch_warnings(record=True):
+            warnings.simplefilter("always")
+            self._excel_data = pandas.read_excel(
+                self._input_file_path, engine="openpyxl")
 
     def _set_columns_language(self):
         self._columns = columns.ColumnsEN if columns.ColumnsEN.DATE.value in self._excel_data else columns.ColumnsPL
@@ -40,7 +41,7 @@ class ArConverter:
         self._excel_data = self._excel_data[self._column_list]
 
     def _save_excel_file(self):
-        writer = ExcelWriter(self._output_file_path, engine='openpyxl')
+        writer = pandas.ExcelWriter(self._output_file_path, engine='openpyxl')
         self._excel_data.to_excel(writer, sheet_name='Export', index=False)
         writer.save()
 
@@ -93,12 +94,13 @@ class ArConverter:
         self._excel_data.columns = self._column_list
 
     def _shorten_date(self):
-        self._excel_data[self._columns.DATE.value] = to_datetime(self._excel_data[self._columns.DATE.value]).dt.date
+        self._excel_data[self._columns.DATE.value] = pandas.to_datetime(
+            self._excel_data[self._columns.DATE.value]).dt.date
 
     def _add_sum_of_times(self):
-        self._excel_data = concat(
+        self._excel_data = pandas.concat(
             [self._excel_data,
-             DataFrame({self._columns.TIME.value: [self._excel_data[self._columns.TIME.value].sum()]})],
+             pandas.DataFrame({self._columns.TIME.value: [self._excel_data[self._columns.TIME.value].sum()]})],
             ignore_index=True, axis=0)
 
     def _modify_descriptions(self):
