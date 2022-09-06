@@ -1,4 +1,5 @@
 import flask
+import flask_cors
 import werkzeug.utils
 import os
 import uuid
@@ -35,6 +36,11 @@ remove_all_files()
 app = flask.Flask(__name__)
 app.secret_key = str(uuid.uuid4())  # 'super secret key'
 
+if 'CORS_ORIGINS' in os.environ:
+    app.config['CORS_HEADERS'] = 'Content-Type'
+    cors = flask_cors.CORS(
+        app, resources={r"/": {"origins": os.environ['CORS_ORIGINS']}})
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_PATH  # define upload path
 # 50Kb # * 1024  # define max file size
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024
@@ -42,6 +48,7 @@ app.config['MAX_CONTENT_LENGTH'] = 50 * 1024
 
 @app.route('/')
 def upload_view():
+
     return flask.render_template('upload.html')
 
 
