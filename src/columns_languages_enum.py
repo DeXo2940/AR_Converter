@@ -6,6 +6,7 @@ class AbstractColumns(enum.Enum):
 
 
 class ColumnsPL(AbstractColumns):
+    EMPLOYEE = "Pracownik"
     DATE = "Data"
     TASK_GROUP = "Grupa zadań"
     TASK = "Zadanie"
@@ -14,6 +15,7 @@ class ColumnsPL(AbstractColumns):
 
 
 class ColumnsEN(AbstractColumns):
+    EMPLOYEE = "Employee"
     DATE = "Date"
     TASK_GROUP = "Task group"
     TASK = "Task"

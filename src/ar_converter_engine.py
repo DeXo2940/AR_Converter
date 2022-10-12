@@ -31,7 +31,8 @@ class ArConverter:
 
     def _set_columns_language(self):
         self._columns = columns.ColumnsEN if columns.ColumnsEN.DATE.value in self._excel_data else columns.ColumnsPL
-        self._column_list = [self._columns.DATE.value,
+        self._column_list = [self._columns.EMPLOYEE.value,
+                             self._columns.DATE.value,
                              self._columns.TASK_GROUP.value,
                              self._columns.TASK.value,
                              self._columns.TIME.value,
